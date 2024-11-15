@@ -7,7 +7,7 @@ export const signInWithEmail = async () => {
   });
   if (error) {
     console.log(error);
-    return;
+    throw error;
   }
   console.log("data:", data);
 };
@@ -19,7 +19,7 @@ export const getUser = async () => {
   } = await supabase.auth.getUser();
   if (error) {
     console.log(error);
-    return;
+    throw error;
   }
   return user;
 };

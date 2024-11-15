@@ -39,12 +39,14 @@ export default function PostForm() {
       uploadFile(postImgFile).then((img_url) => {
         createPost({
           content: postContent,
-          user_id: "13582d46-b2bd-41bd-9812-cfb0ede296f4",
+          user_id: import.meta.env.VITE_USER_ID,
           img_url,
-        }).then(([newPost]) => {
-          dispatch(addPost(newPost));
-          resetStates();
-        });
+        })
+          .then(([newPost]) => {
+            dispatch(addPost(newPost));
+            resetStates();
+          })
+          .catch((err) => alert(err.message));
       });
       return;
     }

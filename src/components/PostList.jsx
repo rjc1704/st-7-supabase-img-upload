@@ -9,13 +9,15 @@ export default function PostList() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getPosts().then((posts) => dispatch(setPosts(posts)));
+    getPosts()
+      .then((posts) => dispatch(setPosts(posts)))
+      .catch((err) => alert(err.message));
   }, []);
 
   return (
     <ul style={{ border: "1px solid red", padding: 12 }}>
       {posts.map((post) => (
-        <PostItem post={post} />
+        <PostItem key={post.id} post={post} />
       ))}
     </ul>
   );
