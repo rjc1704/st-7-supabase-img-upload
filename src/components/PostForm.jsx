@@ -28,6 +28,7 @@ export default function PostForm() {
     const fileObj = event.target.files[0];
     setPostImgFile(fileObj);
     const objectUrl = URL.createObjectURL(fileObj);
+    console.log("objectUrl:", typeof objectUrl);
     setPreviewUrl(objectUrl);
   };
 
@@ -53,7 +54,7 @@ export default function PostForm() {
     // 이미지 선택 안했을 때
     createPost({
       content: postContent,
-      user_id: "13582d46-b2bd-41bd-9812-cfb0ede296f4",
+      user_id: import.meta.env.VITE_USER_ID,
     }).then(([newPost]) => {
       dispatch(addPost(newPost));
       resetStates();
